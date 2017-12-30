@@ -1,7 +1,7 @@
 #https://www.hackerrank.com/challenges/30-2d-arrays/problem
 
 def hourglass(matrix, n):
-    result = -45 #Min value of an element is -9, so min sum of an hourglass is -45
+    result = -63 #Min value of an element is -9, so min sum of an hourglass is -63
     for i in range(n-2):
         for j in range(n-2):
             sum = int(matrix[i][j]) + int(matrix[i][j+1]) + int(matrix[i][j+2]) + int(matrix[i+1][j+1]) + int(matrix[i+2][j]) + int(matrix[i+2][j+1]) + int(matrix[i+2][j+2])
