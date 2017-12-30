@@ -1,3 +1,5 @@
+# Queues: A Tale of Two Stacks -> https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -13,6 +15,9 @@ class Stack:
 
     def peek(self):
         return self.items[len(self.items)-1]
+
+    def bottom(self):
+        return self.items[0]
 
     def size(self):
         return len(self.items)
@@ -36,22 +41,23 @@ class QueueUsingTwoStacks:
         return self.stack2.pop()
 
     def peek(self):
-        if not self.stack2.isEmpty():
+        if self.stack2.isEmpty():
+            return self.stack1.bottom()
+        else:
             return self.stack2.peek()
 
     def printQueue(self):
         self.stack2.printstack()
 
-if __name__ == '__main__':
-    q = QueueUsingTwoStacks()
-    # print q.isEmpty()
-    q.enqueue(1)
-    q.enqueue(2)
-    q.enqueue(3)
-    q.peek()
-    q.enqueue(4)
-    q.dequeue()
-    q.printQueue()
 
+queue = QueueUsingTwoStacks()
+t = int(raw_input())
+for line in xrange(t):
+    values = map(int, raw_input().split())
 
-    q.printQueue()
+    if values[0] == 1:
+        queue.enqueue(values[1])
+    elif values[0] == 2:
+        queue.dequeue()
+    else:
+        print queue.peek()
