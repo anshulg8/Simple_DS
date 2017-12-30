@@ -11,6 +11,9 @@ class Queue:
     def dequeue(self):
         return self.items.pop()
 
+    def peek(self):
+        return self.items[len(self.items)-1]
+
     def size(self):
         return len(self.items)
 
@@ -26,6 +29,7 @@ q.enqueue(2)
 q.enqueue(3)
 q.enqueue(4)
 print q.isEmpty()
+print q.peek()
 q.printqueue()
 print ""
 print q.dequeue()
