@@ -11,6 +11,9 @@ class Stack:
     def pop(self):
         return self.items.pop()
 
+    def peek(self):
+        return self.items[len(self.items)-1]
+
     def size(self):
         return len(self.items)
 
@@ -28,5 +31,6 @@ s.push('bob')
 print s.isEmpty()
 s.printstack()
 print s.pop()
+print s.peek()
 print ""
 s.printstack()
