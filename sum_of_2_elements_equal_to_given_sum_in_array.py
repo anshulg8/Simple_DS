@@ -24,10 +24,8 @@ def abcd(arr, count):
             comp.append(count - arr[i])
     return False
 
-# array = input().strip().split()
 array = list(map(int, input().strip().split()))
 result = int(input())
-# array = [1,2,3,4,5,6]
-# result = 6
+
 print (abc(array, result))
 print (abcd(array, result))
