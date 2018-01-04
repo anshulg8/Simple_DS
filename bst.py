@@ -38,6 +38,16 @@ class Node:
             else:
                 return False
 
+    def getHeight(self):
+        if self.leftChild and self.rightChild:
+            return 1 + max(self.leftChild.getHeight(), self.rightChild.getHeight())
+        elif self.leftChild:
+            return 1 + self.leftChild.getHeight()
+        elif self.rightChild:
+            return 1 + self.rightChild.getHeight()
+        else:
+            return 1
+
     def preorder(self):
         if self:
             print (str(self.value))
@@ -79,6 +89,12 @@ class Tree:
         else:
             return False
 
+    def getHeight(self):
+        if self.root:
+            return self.root.getHeight()
+        else:
+            return -1
+
     def preorder(self):
         print ("PreOrder")
         self.root.preorder()
@@ -103,7 +119,7 @@ bst.insert(11)
 bst.preorder()
 bst.postorder()
 bst.inorder()
-
+print(bst.getHeight())
 # Output
 # True
 # PreOrder
@@ -130,3 +146,4 @@ bst.inorder()
 # 9
 # 10
 # 11
+# 3
