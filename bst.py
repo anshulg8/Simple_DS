@@ -48,6 +48,16 @@ class Node:
         else:
             return 1
 
+    def getSize(self):
+        if self.leftChild and self.rightChild:
+            return 1 + self.leftChild.getSize() + self.rightChild.getSize()
+        elif self.leftChild:
+            return 1 + self.leftChild.getSize()
+        elif self.rightChild:
+            return 1 + self.rightChild.getSize()
+        else:
+            return 1
+
     def preorder(self):
         if self:
             print (str(self.value))
@@ -94,6 +104,12 @@ class Tree:
             return self.root.getHeight()
         else:
             return -1
+
+    def getSize(self):
+        if self.root:
+            return self.root.getSize()
+        else:
+            return 0
 
     def remove(self, data):
         if self.root is None:
@@ -222,6 +238,7 @@ bst.preorder()
 bst.postorder()
 bst.inorder()
 print(bst.getHeight())
+print('Size = ', bst.getSize())
 # Output
 # True
 # PreOrder
