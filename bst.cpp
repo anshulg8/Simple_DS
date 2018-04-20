@@ -1,20 +1,20 @@
 #include <iostream>
 using namespace std;
 
-struct BstNode {
+struct Node {
   int data;
-  BstNode* left;
-  BstNode* right;
+  Node* left;
+  Node* right;
 };
 
-BstNode* GetNewNode(int data) {
-  BstNode* newNode = new BstNode();
+Node* GetNewNode(int data) {
+  Node* newNode = new Node();
   newNode->data = data;
   newNode->left = newNode->right = NULL;
   return newNode;
 }
 
-BstNode* Insert(BstNode* root, int data){
+Node* Insert(Node* root, int data){
   if(root == NULL){
     root = GetNewNode(data);
   }
@@ -27,7 +27,7 @@ BstNode* Insert(BstNode* root, int data){
   return root;
 }
 
-bool Search(BstNode* root, int data){
+bool Search(Node* root, int data){
   if (root == NULL){
     return false;
   }
@@ -42,8 +42,24 @@ bool Search(BstNode* root, int data){
   }
 }
 
+Node* findMin(Node* root){
+  while(root->left != NULL){
+    root = root->left;
+  }
+  return root;
+}
+
+void InOrder(Node* root){
+  if(root==NULL){
+    return;
+  }
+  InOrder(root->left);
+  cout << root->data << " ";
+  InOrder(root->right);
+}
+
 int main() {
-  BstNode* root = NULL;
+  Node* root = NULL;
   root = Insert(root,15);
 	root = Insert(root,10);
 	root = Insert(root,20);
@@ -61,4 +77,9 @@ int main() {
   else{
     cout << "Not Found\n";
   }
+  cout << "Min : " << findMin(root)->data << endl;
+
+  cout << "Inorder: ";
+  InOrder(root);
+  cout << "\n";
 }
