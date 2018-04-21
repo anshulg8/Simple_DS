@@ -71,33 +71,10 @@ int findHeight(Node *root){
   return max(findHeight(root->left),findHeight(root->right))+1;
 }
 
-// bool isBst(Node* root, int min_val, int max_val){
-//   // int min_val = findMin(root)->data;
-//   // int max_val = findMax(root)->data;
-//   if(root==NULL) return true;
-//
-//   if(root->data > min_val &&
-//      root->data < max_val &&
-//      isBst(root->left, min_val, root->data) &&
-//      isBst(root->right, root->data, max_val)){
-//        return true;
-//      }
-//     else{
-//       return false;
-//     }
-// }
-
 bool isBST(Node *root, Node *l = NULL, Node *r = NULL){
-    // Base condition
     if (root == NULL) return true;
-
-    // if left node exist that check it has correct data or not
     if (l != NULL and root->data < l->data) return false;
-
-    // if right node exist that check it has correct data or not
     if (r != NULL and root->data > r->data) return false;
-
-    // check recursively for every node.
     return isBST(root->left, l, root) and isBST(root->right, root, r);
 }
 
