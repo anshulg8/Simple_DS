@@ -65,6 +65,42 @@ void InOrder(Node *root){
   InOrder(root->right);
 }
 
+// Returns no. of edges in longest path from root to a leaf node.
+int findHeight(Node *root){
+  if(root==NULL) return -1;
+  return max(findHeight(root->left),findHeight(root->right))+1;
+}
+
+// bool isBst(Node* root, int min_val, int max_val){
+//   // int min_val = findMin(root)->data;
+//   // int max_val = findMax(root)->data;
+//   if(root==NULL) return true;
+//
+//   if(root->data > min_val &&
+//      root->data < max_val &&
+//      isBst(root->left, min_val, root->data) &&
+//      isBst(root->right, root->data, max_val)){
+//        return true;
+//      }
+//     else{
+//       return false;
+//     }
+// }
+
+bool isBST(Node *root, Node *l = NULL, Node *r = NULL){
+    // Base condition
+    if (root == NULL) return true;
+
+    // if left node exist that check it has correct data or not
+    if (l != NULL and root->data < l->data) return false;
+
+    // if right node exist that check it has correct data or not
+    if (r != NULL and root->data > r->data) return false;
+
+    // check recursively for every node.
+    return isBST(root->left, l, root) and isBST(root->right, root, r);
+}
+
 Node* Delete(Node *root, int data){
   if(root == NULL) return root;
   else if(data < root->data){
@@ -91,6 +127,7 @@ Node* Delete(Node *root, int data){
       root = root->left;
       delete temp;
     }
+    // Case3: 2 children
     else{
       Node *temp = findMin(root->right);
       // Node *temp = findMax(root->left);
@@ -125,6 +162,15 @@ int main() {
   }
   cout << "Min : " << findMin(root)->data << endl;
   cout << "Max : " << findMax(root)->data << endl;
+
+  if (isBST(root)){
+    cout << "Is BST" << endl;
+  }
+  else{
+    cout << "Not a BST" << endl;
+  }
+
+  cout << "Height of BST : " << findHeight(root) << endl;
 
   cout << "Inorder: ";
   InOrder(root);
